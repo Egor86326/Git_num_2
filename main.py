@@ -8,8 +8,12 @@ from PyQt5.QtWidgets import *
 class Window(QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
-        uic.loadUi('UI.ui', self)
+        self.setWindowTitle('случайные окружности')
+        self.setFixedSize(370, 250)
 
+        self.pushButton = QPushButton(self)
+        self.pushButton.setGeometry(270, 210, 90, 30)
+        self.pushButton.setText('Создать')
         self.pushButton.clicked.connect(self.run)
 
     def run(self):
@@ -25,10 +29,13 @@ class Window(QMainWindow):
         qp.end()
 
     def draw(self, qp):
-        qp.setBrush(QColor(250, 250, 0))
+        r = random.randrange(0, 255, 1)
+        g = random.randrange(0, 255, 1)
+        b = random.randrange(0, 255, 1)
+        qp.setBrush(QColor(r, g, b))
         i = random.randrange(0, 120, 1)
-        x = random.randrange(0, 250, 1)
-        y = random.randrange(0, 250, 1)
+        x = random.randrange(0, 200, 1)
+        y = random.randrange(0, 200, 1)
         qp.drawEllipse(x, y, i, i)
 
 
